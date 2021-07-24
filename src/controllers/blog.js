@@ -1,8 +1,6 @@
 const { validationResult } = require('express-validator');
 const BlogPost = require('../models/blog');
-const path = require('path');
 const slugify = require('slugify');
-const fs = require('fs');
 
 createBlogPost = (req, res, next) => {
   const errors = validationResult(req);
@@ -117,6 +115,28 @@ getBlogPostByCategory = (req, res, next) => {
     });
 };
 
+getBlogPostMine = (req, res, next) => {
+  const username = req.params.username;
+  BlogPost.find({ author: { name: username } })
+    .then((result) => {
+      if (!result) {
+        const error = new Error(
+          `Blog post dengan id ${username} tidak ditemukan`
+        );
+        error.errorStatus = 404;
+        throw error;
+      } else {
+        res.status(201).json({
+          message: 'Data berhasil diambil',
+          data: result,
+        });
+      }
+    })
+    .catch((err) => {
+      next(err);
+    });
+};
+
 updateBlogPost = (req, res, next) => {
   const errors = validationResult(req);
 
@@ -185,6 +205,7 @@ module.exports = {
   getAllBlogPosts,
   getBlogPostBySlug,
   getBlogPostByCategory,
+  getBlogPostMine,
   updateBlogPost,
   deleteBlogPost,
 };

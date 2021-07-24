@@ -4,6 +4,8 @@ const {
   getAllBlogPosts,
   updateBlogPost,
   deleteBlogPost,
+  getBlogPostMine,
+  getBlogPostByCategory,
 } = require('../controllers/blog');
 const { body } = require('express-validator');
 const router = express.Router();
@@ -16,6 +18,7 @@ const validation = [
 router.post('/post', validation, createBlogPost);
 router.get('/posts', getAllBlogPosts);
 router.get('/post/:slug', getBlogPostBySlug);
+router.get('/post/mine/:username', getBlogPostMine);
 router.get('/category/:categoryName', getBlogPostByCategory);
 router.put('/post/:slug', validation, updateBlogPost);
 router.delete('/post/:slug', deleteBlogPost);

@@ -62,6 +62,6 @@ mongoose
   )
   .then(() => {
     app.listen(port, () => console.log('Connection success'));
-    // module.exports = app;
+    module.exports = app;
   })
   .catch((err) => console.log(err));
