@@ -1,0 +1,49 @@
+Standar API
+
+{root.api}/{version}/{grouping}/{endpoint}
+SAMPLE:
+http://esto.my.id/v1/auth/login
+
+Standar Status Response
+200 - OK            --> Call API Success
+201 - CREATED       --> Post Success
+400 - BAD REQUEST   --> Error on client side
+401 - UNAUTHORIZED  --> User not authorized to the request 
+403 - Forbidden     --> User not allowed to access
+404 - NOT FOUND
+500 - INTERNAL SERVER Error
+502 - BAD GATEWAY
+
+GROUP: Authentication
+
+[1] Register
+{root.api}/{version}/auth/register
+req: 
+{
+  "name": "Esto",
+  "email": "estolagi@gmail.com",
+  "password": "qwe123"
+}
+
+res:
+{
+  "message": "Register success",
+  "data": {
+    "id": 1,
+    "name": "Esto",
+    "email": "estolagi@gmail.com",
+    "password": "qwe123"
+  }
+}
+
+err-response
+
+[1] Login
+{root.api}/{version}/auth/login
+req: 
+{
+  "email": "estolagi@gmail.com",
+  "password": "qwe123
+}
+
+wi5FPjdPgjN0qkAf
