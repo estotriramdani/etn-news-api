@@ -40,18 +40,18 @@ const login = (req, res, next) => {
       if (result) {
         const passwordHashed = result.password;
         if (passwordHash.verify(password, passwordHashed)) {
-          res.status(400).json({
+          res.status(201).json({
             message: 'Login sukses',
             data: null,
           });
         } else {
-          res.status(400).json({
+          res.status(201).json({
             message: 'Password salah',
             data: null,
           });
         }
       } else {
-        res.status(400).json({
+        res.status(201).json({
           message: 'Username tidak terdaftar',
           data: null,
         });
